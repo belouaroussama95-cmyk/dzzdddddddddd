@@ -1,0 +1,28 @@
+```
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+server.cjs
+server.cjs.map
+
+# Environment variables
+.env*
+
+# IDE
+.vscode/
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Distribution / packaging
+.DS_Store
+Thumbs.db
+
+```

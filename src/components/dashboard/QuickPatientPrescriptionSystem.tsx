@@ -811,13 +811,22 @@ export function QuickPatientPrescriptionSystem({
                         setActiveItemSearchIndex(index);
                         setActiveSearchQuery(item.medicationName);
                       }}
+                      onBlur={() => {
+                        // Delay closing to allow click on dropdown items
+                        setTimeout(() => {
+                          setActiveItemSearchIndex(null);
+                        }, 150);
+                      }}
                       placeholder="Ex: Amoxicilline, Paracétamol, Ramipril..."
                       className="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-hidden focus:border-teal-500 shadow-2xs"
                     />
 
                     {/* Autocomplete Dropdown */}
                     {activeItemSearchIndex === index && filteredMeds.length > 0 && (
-                      <div className="absolute top-full left-0 right-0 z-30 mt-1 bg-white rounded-xl shadow-xl border border-slate-200 max-h-48 overflow-y-auto divide-y divide-slate-100">
+                      <div 
+                        className="absolute top-full left-0 right-0 z-30 mt-1 bg-white rounded-xl shadow-xl border border-slate-200 max-h-48 overflow-y-auto divide-y divide-slate-100"
+                        onMouseDown={e => e.preventDefault()} // Prevent blur from firing when clicking dropdown
+                      >
                         {filteredMeds.map(m => (
                           <div
                             key={m.id}
