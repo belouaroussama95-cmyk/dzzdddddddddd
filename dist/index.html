@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Guard against scripts/extensions or iframe test runners attempting to set window.fetch when it only has a getter
+      (function() {
+        try {
+          var targetObj = window;
+          var proto = typeof Window !== 'undefined' ? Window.prototype : Object.getPrototypeOf(window);
+          var originalFetch = targetObj.fetch;
+          var currentFetch = typeof originalFetch === 'function' ? originalFetch.bind(targetObj) : originalFetch;
+
+          function getFetch() {
+            return currentFetch;
+          }
+          function setFetch(val) {
+            currentFetch = val;
+          }
+
+          if (proto) {
+            try {
+              Object.defineProperty(proto, 'fetch', {
+                get: getFetch,
+                set: setFetch,
+                configurable: true,
+                enumerable: true
+              });
+            } catch (eProto) {}
+          }
+
+          try {
+            Object.defineProperty(targetObj, 'fetch', {
+              get: getFetch,
+              set: setFetch,
+              configurable: true,
+              enumerable: true
+            });
+          } catch (eWin) {}
+
+          if (typeof globalThis !== 'undefined' && globalThis !== targetObj) {
+            try {
+              Object.defineProperty(globalThis, 'fetch', {
+                get: getFetch,
+                set: setFetch,
+                configurable: true,
+                enumerable: true
+              });
+            } catch (eGlobal) {}
+          }
+        } catch (e) {
+          console.warn('Fetch setter patch error:', e);
+        }
+      })();
+    </script>
+    <title>Remix Ordicares v 1 1 1 </title>
+    <meta name="description" content="Espace de travail clinique de prescription d'ordonnances médicales et de suivi des patients en français." />
+    <meta property="og:title" content="Remix Ordicares v 1 1 1 " />
+    <meta property="og:description" content="Espace de travail clinique de prescription d'ordonnances médicales et de suivi des patients en français." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="module" crossorigin src="/assets/index-Q_ymeqzc.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CuBYtjSc.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+
