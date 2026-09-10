@@ -1,0 +1,398 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html.dark,
+body.dark {
+  color-scheme: dark;
+  background-color: #0b151f;
+  color: #f1f5f9;
+}
+
+/* Surface theming for night mode */
+html.dark .bg-\[\#f8fafc\] {
+  background-color: #0b151f !important;
+}
+
+html.dark .bg-white {
+  background-color: #112233 !important;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-50\/50,
+html.dark .bg-slate-50\/80 {
+  background-color: #0e1c2a !important;
+}
+
+html.dark .bg-slate-100 {
+  background-color: #162c42 !important;
+}
+
+html.dark .bg-slate-200 {
+  background-color: #1e3850 !important;
+}
+
+html.dark .border-slate-200,
+html.dark .border-slate-100,
+html.dark .border-slate-300,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-200\/70,
+html.dark .border-slate-200\/60 {
+  border-color: #1e3850 !important;
+}
+
+html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #1e3850 !important;
+}
+
+html.dark .text-slate-900,
+html.dark .text-slate-800 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-600,
+html.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-slate-400 {
+  color: #64748b !important;
+}
+
+/* ========================================================================= */
+/* VISIBLE BORDERS FOR ALL TEXT BOXES, INPUTS, TEXTAREAS & SELECTS          */
+/* Replaces thin, faint 1px borders with crisp, high-visibility 1.5px lines  */
+/* ========================================================================= */
+input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.border-none),
+textarea:not(.border-none),
+select:not(.border-none) {
+  border-width: 1.5px !important;
+  border-style: solid !important;
+  border-color: #94a3b8 !important; /* Slate-400: crisp, easily visible border */
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.border-none):hover,
+textarea:not(.border-none):hover,
+select:not(.border-none):hover {
+  border-color: #64748b !important; /* Slate-500 on hover */
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.border-none):focus,
+textarea:not(.border-none):focus,
+select:not(.border-none):focus {
+  border-width: 1.5px !important;
+  border-color: #0284c7 !important; /* Sky-600 */
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
+  outline: none !important;
+}
+
+/* Also ensure custom search box containers and input wrappers have prominent borders */
+.border-slate-200:has(> input),
+.border-slate-200:has(> select),
+.border-slate-200:has(> textarea) {
+  border-width: 1.5px !important;
+  border-color: #94a3b8 !important;
+}
+
+/* Inputs, Textareas, Selects in dark mode */
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.border-none),
+html.dark textarea:not(.border-none),
+html.dark select:not(.border-none) {
+  background-color: #0e1c2a !important;
+  color: #f8fafc !important;
+  border-width: 1.5px !important;
+  border-style: solid !important;
+  border-color: #475569 !important; /* Slate-600: strong visible contrast against dark surface */
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.border-none):hover,
+html.dark textarea:not(.border-none):hover,
+html.dark select:not(.border-none):hover {
+  border-color: #64748b !important;
+}
+
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]):not([type="file"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.border-none):focus,
+html.dark textarea:not(.border-none):focus,
+html.dark select:not(.border-none):focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+}
+
+html.dark .border-slate-200:has(> input),
+html.dark .border-slate-200:has(> select),
+html.dark .border-slate-200:has(> textarea) {
+  border-width: 1.5px !important;
+  border-color: #475569 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+html.dark select option {
+  background-color: #112233 !important;
+  color: #f8fafc !important;
+}
+
+/* Table rows */
+html.dark table thead tr {
+  background-color: #0e1c2a !important;
+}
+
+html.dark table tbody tr:hover {
+  background-color: #14283b !important;
+}
+
+/* Badge colors with high readability in night mode */
+html.dark .bg-teal-50 {
+  background-color: rgba(13, 148, 136, 0.16) !important;
+  color: #5eead4 !important;
+}
+
+html.dark .bg-teal-100 {
+  background-color: rgba(13, 148, 136, 0.25) !important;
+  color: #5eead4 !important;
+}
+
+html.dark .text-teal-700,
+html.dark .text-teal-800,
+html.dark .text-teal-900 {
+  color: #2dd4bf !important;
+}
+
+html.dark .bg-sky-50 {
+  background-color: rgba(14, 165, 233, 0.16) !important;
+  color: #7dd3fc !important;
+}
+
+html.dark .bg-sky-100 {
+  background-color: rgba(14, 165, 233, 0.25) !important;
+  color: #7dd3fc !important;
+}
+
+html.dark .text-sky-700,
+html.dark .text-sky-800,
+html.dark .text-sky-900 {
+  color: #38bdf8 !important;
+}
+
+html.dark .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+  color: #6ee7b7 !important;
+}
+
+html.dark .bg-emerald-100 {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  color: #6ee7b7 !important;
+}
+
+html.dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.16) !important;
+  color: #fcd34d !important;
+}
+
+html.dark .bg-amber-100 {
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  color: #fcd34d !important;
+}
+
+html.dark .text-amber-600,
+html.dark .text-amber-700,
+html.dark .text-amber-800 {
+  color: #fbbf24 !important;
+}
+
+html.dark .bg-rose-50 {
+  background-color: rgba(244, 63, 94, 0.16) !important;
+  color: #fda4af !important;
+}
+
+html.dark .bg-rose-100 {
+  background-color: rgba(244, 63, 94, 0.25) !important;
+  color: #fda4af !important;
+}
+
+html.dark .text-rose-600,
+html.dark .text-rose-700,
+html.dark .text-rose-800 {
+  color: #fb7185 !important;
+}
+
+html.dark .bg-green-100 {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+  color: #86efac !important;
+}
+
+html.dark .bg-red-100 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  color: #fca5a5 !important;
+}
+
+html.dark .shadow-xs,
+html.dark .shadow-sm,
+html.dark .shadow,
+html.dark .shadow-md,
+html.dark .shadow-lg,
+html.dark .shadow-xl {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* In "Texte Seul" (pre-printed paper) mode: completely hide PNG model layer both on screen and in print */
+.print-text-only .ordonnance-model-layer,
+#printable-a5-sheet.print-text-only .ordonnance-model-layer,
+#printable-a4-sheet.print-text-only .ordonnance-model-layer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+@layer utilities {
+  @media print {
+    @page {
+      size: A5 portrait;
+      margin: 0mm;
+    }
+
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    html, body {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 148mm !important;
+      height: 210mm !important;
+      max-height: 210mm !important;
+      overflow: hidden !important;
+    }
+
+    /* Hide UI chrome in print */
+    .no-print,
+    aside,
+    header,
+    nav,
+    button,
+    [role="dialog"] .no-print,
+    .toast-container {
+      display: none !important;
+      visibility: hidden !important;
+    }
+
+    /* Neutralize all layout padding and sidebar offsets */
+    .lg\:pl-64,
+    div[class*="lg:pl-64"],
+    main,
+    #root {
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+      width: 148mm !important;
+      height: 210mm !important;
+      max-height: 210mm !important;
+      overflow: hidden !important;
+      background: transparent !important;
+    }
+
+    .printable-prescription-wrapper {
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      overflow: hidden !important;
+      width: 148mm !important;
+      height: 209.8mm !important;
+      min-height: 209.8mm !important;
+      max-height: 209.8mm !important;
+      display: block !important;
+    }
+
+    /* STRICT FULL A5 SHEET (148mm x 210mm): MEDICAL PRESCRIPTION STANDARD */
+    #printable-a4-sheet,
+    #printable-a5-sheet,
+    .printable-sheet {
+      background: white !important;
+      color: var(--rx-text-color, #0f172a) !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      width: 148mm !important;
+      min-width: 148mm !important;
+      max-width: 148mm !important;
+      height: 209.8mm !important;
+      min-height: 209.8mm !important;
+      max-height: 209.8mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      page-break-inside: avoid !important;
+      page-break-after: avoid !important;
+      page-break-before: avoid !important;
+      break-inside: avoid !important;
+      box-sizing: border-box !important;
+      position: relative !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+
+    /* Background PNG template covers the entire A5 sheet from top to bottom */
+    .ordonnance-model-layer {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 148mm !important;
+      height: 209.8mm !important;
+      z-index: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .ordonnance-model-layer img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: fill !important;
+      display: block !important;
+    }
+
+    /* Overlaid clinical text covers full A5 height with proportional flex distribution */
+    .ordonnance-text-overlay {
+      position: relative !important;
+      z-index: 10 !important;
+      width: 148mm !important;
+      height: 209.8mm !important;
+      min-height: 209.8mm !important;
+      max-height: 209.8mm !important;
+      padding-left: 7mm !important;
+      padding-right: 7mm !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      box-sizing: border-box !important;
+    }
+
+    .ordonnance-patient-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    /* Print text overlay only on pre-printed prescription paper */
+    .print-text-only .ordonnance-model-layer {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  }
+}

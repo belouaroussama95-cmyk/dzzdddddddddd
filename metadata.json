@@ -1,0 +1,8 @@
+{
+  "name": "Remix Ordicares v 1 1 1 ",
+  "description": "Espace de travail clinique de prescription d'ordonnances médicales et de suivi des patients en français.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
