@@ -819,6 +819,12 @@ export function PrescriptionBuilder({
                               setActiveSearchIndex(index);
                               setSearchQuery(item.medicationName);
                             }}
+                            onBlur={() => {
+                              // Delay closing to allow click on dropdown items
+                              setTimeout(() => {
+                                setActiveSearchIndex(null);
+                              }, 150);
+                            }}
                             onChange={e => {
                               setSearchQuery(e.target.value);
                               handleUpdateItem(index, 'medicationName', e.target.value);
@@ -832,7 +838,10 @@ export function PrescriptionBuilder({
 
                         {/* Autocomplete Dropdown List */}
                         {activeSearchIndex === index && filteredMeds.length > 0 && (
-                          <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-slate-200 py-1 max-h-72 overflow-y-auto">
+                          <div 
+                            className="absolute z-20 top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-slate-200 py-1 max-h-72 overflow-y-auto"
+                            onMouseDown={e => e.preventDefault()} // Prevent blur from firing when clicking dropdown
+                          >
                             <div className="sticky top-0 z-10 px-3 py-1.5 text-[10px] uppercase tracking-wider font-bold text-slate-500 bg-slate-50/95 backdrop-blur-2xs border-b border-slate-100 flex items-center justify-between">
                               <span>Catalogue Médicaments ({filteredMeds.length} disponibles)</span>
                               <span>↑↓ pour naviguer • Entrée pour valider</span>

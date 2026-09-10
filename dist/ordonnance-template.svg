@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1754" width="1240" height="1754">
+  <defs>
+    <!-- Top sky subtle gradient fill -->
+    <linearGradient id="topSkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b8d8f5" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#cfe3f8" stop-opacity="0.65"/>
+      <stop offset="70%" stop-color="#e8f2fc" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Top wave soft accent -->
+    <linearGradient id="topWaveGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#cbe3f9" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#b8d7f5" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#c6e0f8" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Bottom lighter wave gradient -->
+    <linearGradient id="botWaveLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8ec1eb"/>
+      <stop offset="50%" stop-color="#6faadc"/>
+      <stop offset="100%" stop-color="#8ac0eb"/>
+    </linearGradient>
+
+    <!-- Bottom vibrant dark blue wave gradient -->
+    <linearGradient id="botWaveDark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3780ce"/>
+      <stop offset="50%" stop-color="#4d95dd"/>
+      <stop offset="100%" stop-color="#2e76c7"/>
+    </linearGradient>
+
+    <!-- Detailed Medical Caduceus with curved wings and entwined snakes -->
+    <g id="caduceusSymbol">
+      <!-- Central staff top round knob -->
+      <circle cx="0" cy="-330" r="26" />
+
+      <!-- Staff vertical rod with tapered bottom tip -->
+      <path d="M -7,-304 L 7,-304 L 4,330 L -4,330 Z" />
+      <polygon points="-5,330 5,330 0,355" />
+
+      <!-- Left Wing feathers -->
+      <path d="M -8,-285 
+               C -55,-325 -135,-345 -225,-325 
+               C -268,-315 -288,-298 -295,-288 
+               C -288,-274 -262,-275 -228,-270 
+               C -185,-265 -142,-245 -110,-212 
+               C -72,-172 -42,-158 -8,-170 Z" />
+
+      <path d="M -15,-270 
+               C -68,-298 -140,-314 -206,-302 
+               C -248,-294 -272,-275 -278,-262 
+               C -262,-252 -226,-254 -190,-245 
+               C -148,-235 -104,-208 -64,-174 
+               C -40,-154 -24,-154 -12,-164 Z" opacity="0.9" />
+
+      <path d="M -16,-244 
+               C -58,-268 -114,-276 -170,-264 
+               C -212,-255 -240,-235 -244,-222 
+               C -224,-214 -184,-218 -148,-205 
+               C -108,-188 -62,-158 -16,-152 Z" opacity="0.82" />
+
+      <!-- Right Wing feathers (Symmetric mirror) -->
+      <path d="M 8,-285 
+               C 55,-325 135,-345 225,-325 
+               C 268,-315 288,-298 295,-288 
+               C 288,-274 262,-275 228,-270 
+               C 185,-265 142,-245 110,-212 
+               C 72,-172 42,-158 8,-170 Z" />
+
+      <path d="M 15,-270 
+               C 68,-298 140,-314 206,-302 
+               C 248,-294 272,-275 278,-262 
+               C 262,-252 226,-254 190,-245 
+               C 148,-235 104,-208 64,-174 
+               C 40,-154 24,-154 12,-164 Z" opacity="0.9" />
+
+      <path d="M 16,-244 
+               C 58,-268 114,-276 170,-264 
+               C 212,-255 240,-235 244,-222 
+               C 224,-214 184,-218 148,-205 
+               C 108,-188 62,-158 16,-152 Z" opacity="0.82" />
+
+      <!-- Snakes Heads and bodies intertwined -->
+      <!-- Left Snake Head facing center inward -->
+      <path d="M -54,-170 C -50,-186 -30,-188 -18,-180 C -10,-174 -13,-164 -24,-160 C -37,-156 -57,-154 -54,-170 Z" />
+      
+      <!-- Left Snake Coiling Body (continuous smooth loops) -->
+      <path d="M -46,-164 
+               C -92,-142 -106,-102 -94,-60 
+               C -78,-15 -34,6 -2,22 
+               C 44,40 86,64 86,116 
+               C 86,162 44,196 0,220 
+               C -44,242 -74,266 -68,306 
+               C -64,338 -32,350 0,356" 
+            fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+
+      <!-- Right Snake Head facing center inward -->
+      <path d="M 54,-170 C 50,-186 30,-188 18,-180 C 10,-174 13,-164 24,-160 C 37,-156 57,-154 54,-170 Z" />
+
+      <!-- Right Snake Coiling Body (continuous smooth loops) -->
+      <path d="M 46,-164 
+               C 92,-142 106,-102 94,-60 
+               C 78,-15 34,6 2,22 
+               C -44,40 -86,64 -86,116 
+               C -86,162 -44,196 0,220 
+               C 44,242 74,266 68,306 
+               C 64,338 32,350 0,356" 
+            fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </defs>
+
+  <!-- PURE CRISP WHITE STATIONERY BASE -->
+  <rect width="1240" height="1754" fill="#ffffff" />
+
+  <!-- TOP HEADER WAVES (Soft sky blue flowing waves) -->
+  <!-- 1. Background sky tint at the top -->
+  <rect width="1240" height="380" fill="url(#topSkyGrad)" />
+
+  <!-- 2. Soft pastel top wave shape -->
+  <path d="M 0,0 L 1240,0 L 1240,250 C 1020,330 820,340 600,265 C 400,195 190,205 0,260 Z" fill="url(#topWaveGlow)" opacity="0.7" />
+
+  <!-- 3. Primary Top Wave Curve with natural dip under the Caduceus -->
+  <path d="M 0,225 C 180,180 360,190 560,250 C 780,315 980,320 1240,240 L 1240,305 C 1000,360 790,350 580,280 C 380,220 180,220 0,270 Z" fill="#b4d5f5" opacity="0.88" />
+
+  <!-- 4. Subtle contour ribbon -->
+  <path d="M 0,270 C 180,220 380,220 580,280 C 790,350 1000,360 1240,305 L 1240,314 C 990,370 780,360 570,288 C 370,226 170,228 0,278 Z" fill="#9ec6f0" opacity="0.65" />
+
+  <!-- TOP-LEFT CADUCEUS EMBLEM (Vivid Royal Medical Blue: #1c73ba) -->
+  <g transform="translate(150, 185) scale(0.39)" fill="#1c73ba" color="#1c73ba">
+    <use href="#caduceusSymbol" />
+  </g>
+
+  <!-- CENTER LARGE WATERMARK CADUCEUS EMBLEM (Light Translucent Icy Blue: #e3f0fb) -->
+  <g transform="translate(620, 930) scale(1.65)" fill="#e2effa" color="#e2effa" opacity="0.82">
+    <use href="#caduceusSymbol" />
+  </g>
+
+  <!-- BOTTOM FOOTER WAVES (Smooth ocean blue curves) -->
+  <!-- 1. Upper light sky wave -->
+  <path d="M 0,1660 C 220,1615 480,1600 720,1630 C 920,1655 1090,1628 1240,1585 L 1240,1675 C 1090,1705 910,1715 720,1690 C 480,1660 230,1670 0,1715 Z" fill="url(#botWaveLight)" />
+
+  <!-- 2. Lower rich vibrant medical blue wave filling the bottom border -->
+  <path d="M 0,1705 C 240,1660 490,1650 740,1678 C 930,1700 1100,1678 1240,1645 L 1240,1754 L 0,1754 Z" fill="url(#botWaveDark)" />
+</svg>

@@ -10,7 +10,8 @@ import {
   FileText,
   Upload,
   Image as ImageIcon,
-  Palette
+  Palette,
+  Edit3
 } from 'lucide-react';
 import type { Prescription, ClinicSettings, DoctorProfile } from '../../types';
 import { useToast } from '../../context/ToastContext';
@@ -219,6 +220,22 @@ export function PrintablePrescription({
   const [customPatientDiagnosis, setCustomPatientDiagnosis] = useState(
     prescription.patientDiagnosis || 'Consultation Thérapeutique'
   );
+
+  // Editable medication items state
+  const [editableItems, setEditableItems] = useState(() => {
+    return prescription.items.map(item => ({
+      id: item.id || `item-${Math.random()}`,
+      medicationName: item.medicationName,
+      strength: item.strength,
+      dosageForm: item.dosageForm,
+      dose: item.dose,
+      route: item.route,
+      frequency: item.frequency,
+      duration: item.duration,
+      quantity: item.quantity,
+      instructions: item.instructions
+    }));
+  });
 
   const printRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -720,9 +737,13 @@ export function PrintablePrescription({
                       <span style={{ color: accentColor }} className="font-bold shrink-0 text-xs sm:text-sm">
                         Couverture :
                       </span>
-                      <span style={{ color: bodyTextColor, opacity: 0.9 }} className="font-medium">
-                        {customPatientInsurance}
-                      </span>
+                      <input
+                        type="text"
+                        value={customPatientInsurance}
+                        onChange={e => setCustomPatientInsurance(e.target.value)}
+                        className="flex-1 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-medium px-1 py-0.5 transition-colors text-xs sm:text-sm"
+                        style={{ color: bodyTextColor }}
+                      />
                     </p>
                   </div>
                 </div>
@@ -736,9 +757,14 @@ export function PrintablePrescription({
                 {/* Espace d'alignement tenant compte du symbole Rx présent sur le modèle PNG */}
                 <div className="h-6 sm:h-8 mb-3" />
 
+                {/* Toggle for edit mode on medication items */}
+                <div className="mb-3 flex items-center justify-between">
+                  <span style={{ color: accentColor }} className="font-bold text-sm sm:text-base">Médicaments Prescrits :</span>
+                </div>
+
                 {/* Liste des Médicaments Prescrits */}
                 <div className="space-y-4 pl-2 sm:pl-3">
-                  {prescription.items.map((item, index) => {
+                  {editableItems.map((item, index) => {
                     const formShort = formatDosageForm(item.dosageForm, item.route);
                     const qtyShort = formatQuantity(item.quantity);
                     const freqShort = formatFrequency(item.frequency);
@@ -748,18 +774,42 @@ export function PrintablePrescription({
                       <div key={item.id || index} className="space-y-1">
                         {/* Ligne Médicament + Forme (ex: Cp) + Trait de liaison + Qté (ex: 1 bt) */}
                         <div className="flex items-center gap-2 overflow-hidden">
-                          <span style={{ color: bodyTextColor }} className="font-bold text-base sm:text-lg shrink-0">
-                            {index + 1}. {item.medicationName.toUpperCase()}
-                          </span>
+                          <input
+                            type="text"
+                            value={item.medicationName}
+                            onChange={e => {
+                              const updated = [...editableItems];
+                              updated[index] = { ...updated[index], medicationName: e.target.value };
+                              setEditableItems(updated);
+                            }}
+                            className="flex-1 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-bold text-base sm:text-lg px-1 py-0.5 transition-colors uppercase"
+                            style={{ color: bodyTextColor }}
+                          />
                           {item.strength && (
-                            <span style={{ color: accentColor }} className="font-bold text-sm sm:text-base shrink-0">
-                              {item.strength}
-                            </span>
+                            <input
+                              type="text"
+                              value={item.strength}
+                              onChange={e => {
+                                const updated = [...editableItems];
+                                updated[index] = { ...updated[index], strength: e.target.value };
+                                setEditableItems(updated);
+                              }}
+                              className="w-20 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-bold text-sm sm:text-base px-1 py-0.5 transition-colors"
+                              style={{ color: accentColor }}
+                            />
                           )}
                           {formShort && (
-                            <span style={{ color: bodyTextColor, opacity: 0.8 }} className="text-xs sm:text-sm font-semibold shrink-0">
-                              {formShort}
-                            </span>
+                            <input
+                              type="text"
+                              value={formShort}
+                              onChange={e => {
+                                const updated = [...editableItems];
+                                updated[index] = { ...updated[index], dosageForm: e.target.value };
+                                setEditableItems(updated);
+                              }}
+                              className="w-16 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-semibold text-xs sm:text-sm px-1 py-0.5 transition-colors"
+                              style={{ color: bodyTextColor, opacity: 0.8 }}
+                            />
                           )}
 
                           {/* Trait de liaison reliant le médicament à la quantité (comme indiqué sur le modèle) */}
@@ -769,12 +819,17 @@ export function PrintablePrescription({
                           />
 
                           {qtyShort && (
-                            <span
+                            <input
+                              type="text"
+                              value={qtyShort}
+                              onChange={e => {
+                                const updated = [...editableItems];
+                                updated[index] = { ...updated[index], quantity: e.target.value };
+                                setEditableItems(updated);
+                              }}
+                              className="w-24 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-bold text-xs sm:text-sm px-1 py-0.5 transition-colors whitespace-nowrap"
                               style={{ color: bodyTextColor }}
-                              className="text-xs sm:text-sm font-bold shrink-0 whitespace-nowrap bg-white pl-1"
-                            >
-                              Qté : {qtyShort}
-                            </span>
+                            />
                           )}
                         </div>
 
@@ -782,13 +837,43 @@ export function PrintablePrescription({
                         <div className="pl-5 text-xs sm:text-sm font-medium">
                           <p className="flex items-center gap-2 flex-wrap">
                             <span style={{ color: accentColor }} className="font-bold">Posologie :</span>
-                            <span style={{ color: bodyTextColor }} className="font-semibold">
-                              {item.dose} {item.dose && freqShort ? '• ' : ''}{freqShort}
-                            </span>
+                            <input
+                              type="text"
+                              value={item.dose}
+                              onChange={e => {
+                                const updated = [...editableItems];
+                                updated[index] = { ...updated[index], dose: e.target.value };
+                                setEditableItems(updated);
+                              }}
+                              className="w-20 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-semibold px-1 py-0.5 transition-colors"
+                              style={{ color: bodyTextColor }}
+                            />
+                            {item.dose && freqShort && <span className="font-semibold" style={{ color: bodyTextColor }}>•</span>}
+                            <input
+                              type="text"
+                              value={freqShort}
+                              onChange={e => {
+                                const updated = [...editableItems];
+                                updated[index] = { ...updated[index], frequency: e.target.value };
+                                setEditableItems(updated);
+                              }}
+                              className="w-32 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-semibold px-1 py-0.5 transition-colors"
+                              style={{ color: bodyTextColor }}
+                            />
                             {durShort && (
-                              <span style={{ color: bodyTextColor, opacity: 0.75 }} className="font-normal">
-                                pendant {durShort}
-                              </span>
+                              <input
+                                type="text"
+                                value={`pendant ${durShort}`}
+                                onChange={e => {
+                                  const val = e.target.value;
+                                  const durVal = val.replace('pendant ', '');
+                                  const updated = [...editableItems];
+                                  updated[index] = { ...updated[index], duration: durVal };
+                                  setEditableItems(updated);
+                                }}
+                                className="w-32 bg-transparent border-b border-transparent hover:border-slate-300 focus:border-sky-500 focus:outline-none font-normal px-1 py-0.5 transition-colors"
+                                style={{ color: bodyTextColor, opacity: 0.75 }}
+                              />
                             )}
                           </p>
                         </div>
